@@ -631,7 +631,7 @@
     <!-- Global Init -->
     <script src="assets/js/custom.js"></script>
 
-    <script>
+    <!-- <script>
         // Charger les données dynamiques depuis l'API
         // Load dynamic data from the back-end on port 5252
         $(function() {
@@ -645,6 +645,19 @@
                 error: function() {
                     console.error("Impossible de récupérer les données de l'API.");
                     $('#dynamic-content').text("Erreur de connexion à l'API.");
+                }
+            });
+        });
+    </script> -->
+    <script>
+        // Charge les données dynamiques via le proxy
+        $(function() {
+            $.ajax({
+                type: "GET",
+                url: "/api/hello",  // Passe par le proxy
+                success: function (data) {
+                    console.log(data);
+                    $('#dynamic-content').text(data);
                 }
             });
         });
