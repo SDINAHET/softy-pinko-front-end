@@ -19,9 +19,9 @@
     <link rel="stylesheet" href="assets/css/templatemo-softy-pinko.css">
 
     </head>
-    
+
     <body>
-    
+
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
@@ -29,10 +29,10 @@
             <div></div>
             <div></div>
         </div>
-    </div>  
+    </div>
     <!-- ***** Preloader End ***** -->
-    
-    
+
+
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
         <div class="container">
@@ -73,6 +73,7 @@
             <div class="container">
                 <div class="row">
                     <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12">
+                        <h1 id="dynamic-content"></h1>
                         <h1>We provide the best <strong>strategy</strong><br>to grow up your <strong>business</strong></h1>
                         <a href="#features" class="main-button-slider">Discover More</a>
                     </div>
@@ -278,7 +279,7 @@
                     </div>
                 </div>
                 <!-- ***** Testimonials Item End ***** -->
-                
+
                 <!-- ***** Testimonials Item Start ***** -->
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="team-item">
@@ -296,7 +297,7 @@
                     </div>
                 </div>
                 <!-- ***** Testimonials Item End ***** -->
-                
+
                 <!-- ***** Testimonials Item Start ***** -->
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="team-item">
@@ -459,7 +460,7 @@
             </div>
         </div>
     </section>
-    <!-- ***** Counter Parallax End ***** -->   
+    <!-- ***** Counter Parallax End ***** -->
 
     <!-- ***** Blog Start ***** -->
     <section class="section" id="blog">
@@ -596,7 +597,7 @@
         </div>
     </section>
     <!-- ***** Contact Us End ***** -->
-    
+
     <!-- ***** Footer Start ***** -->
     <footer>
         <div class="container">
@@ -613,7 +614,7 @@
             </div>
         </div>
     </footer>
-    
+
     <!-- jQuery -->
     <script src="assets/js/jquery-2.1.0.min.js"></script>
 
@@ -625,10 +626,29 @@
     <script src="assets/js/scrollreveal.min.js"></script>
     <script src="assets/js/waypoints.min.js"></script>
     <script src="assets/js/jquery.counterup.min.js"></script>
-    <script src="assets/js/imgfix.min.js"></script> 
-    
+    <script src="assets/js/imgfix.min.js"></script>
+
     <!-- Global Init -->
     <script src="assets/js/custom.js"></script>
+
+    <script>
+        // Charger les données dynamiques depuis l'API
+        // Load dynamic data from the back-end on port 5252
+        $(function() {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:5252/api/hello", // URL de l'API Flask
+                success: function(data) {
+                    console.log("Réponse API :", data); // Log pour le débogage
+                    $('#dynamic-content').text(data);   // Insère la réponse dans l'élément h1
+                },
+                error: function() {
+                    console.error("Impossible de récupérer les données de l'API.");
+                    $('#dynamic-content').text("Erreur de connexion à l'API.");
+                }
+            });
+        });
+    </script>
 
   </body>
 </html>
